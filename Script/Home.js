@@ -1,10 +1,12 @@
-/* =========================================================================
+/* 
    MEGA MENU — FULL WIDTH — CLICK TO OPEN — MATCHES YOUR SCREENSHOTS
-   ========================================================================= */
+   
+   */
+
 (function(){
   const content = {
     solutions: {
-      title: 'Solutions',
+      title: 'Solutions', 
       left: [
         { heading: 'for Trainees', text: 'Personalized, job-aligned training in AI, data, and career skills', link: '#' },
         { heading: 'for Universities', text: 'Use our tenx system to deliver job-aligned training with personalized instant grading', link: '#' }
@@ -98,17 +100,7 @@
   }
 
   function closeMenu(){
-/*************  ✨ Windsurf Command ⭐  *************/
-/**
- * Close the currently open menu and reset the UI state.
- * This function removes the "open" class from the card element,
- * removes the "open" class from all dropdown buttons, and
- * sets the aria-expanded attribute to false on all dropdown buttons.
- * It also sets the aria-hidden attribute to true on the overlay element
- * and removes the active menu key from the overlay's dataset.
- * The function is asynchronous and the overlay is hidden after a delay of 220ms.
- */
-/*******  563a60c5-4b5f-4e63-8d1f-89e545e4bcf7  *******/    card.classList.remove('open');
+    card.classList.remove('open');
     setTimeout(()=>{
       overlay.classList.add('hidden');
       overlay.setAttribute('aria-hidden', 'true');
@@ -163,9 +155,18 @@
 
 
 
+
+/* =========================================================================
+   SCROLLING GRID — INFINITE LOOP — HOVER PAUSE
+   ========================================================================= */
+   const grid = document.getElementById("infiniteGrid");
+
+// Duplicate all images once (for perfect loop)
+grid.innerHTML += grid.innerHTML;
+
 /* =========================================================================
    ALUMNI FLOATING CARDS
-========================================================================= */
+   ========================================================================= */
 const cards = document.querySelectorAll(".alumni-card");
 let index = 0;
 
@@ -199,16 +200,27 @@ if (cards.length > 0) {
   }, 4000);
 }
 
-
-
 /* =========================================================================
-   ACCORDION
-========================================================================= */
-const items = document.querySelectorAll(".accordion-item");
+   ACCORDION — CLICK TO OPEN/CLOSE
+   ========================================================================= */
+const accordionItems = document.querySelectorAll(".accordion-item");
 
-items.forEach(item => {
-  item.querySelector(".accordion-header").addEventListener("click", () => {
-    items.forEach(i => i.classList.remove("active"));
-    item.classList.add("active");
+accordionItems.forEach(item => {
+  const header = item.querySelector(".accordion-header");
+  const symbol = item.querySelector(".symbol");
+
+  header.addEventListener("click", () => {
+
+    // Close all
+    accordionItems.forEach(i => {
+      if (i !== item) i.classList.remove("active");
+      i.querySelector(".symbol").textContent = "+";
+    });
+
+    // Toggle current
+    item.classList.toggle("active");
+    symbol.textContent = item.classList.contains("active") ? "×" : "+";
   });
 });
+
+
