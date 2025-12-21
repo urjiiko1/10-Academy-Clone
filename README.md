@@ -1,4 +1,2 @@
 ﻿# 10-Academy-Clone
-
- ## coming soon
-
+## coming soon
